@@ -1,0 +1,26 @@
+<div class="share">
+    <div class="modal-header">
+        <button type="button" class="btn btn-link pull-right" ng-click="close()">
+            <span aria-hidden="true" class="fa fa-times"></span>
+            <span class="sr-only">Close</span>
+        </button>
+        <h3 class="modal-title">Share</h3>
+    </div>
+    <div class="modal-body">
+        <img src="./images/cc.png" />
+        <h4>Link</h4>
+        <input type="text" class="form-control" value="{{link}}" readonly />
+        <div class="share__embed">
+            <div class="form-inline share__embed__size">
+                <div class="form-group">
+                    Size:
+                    <input class="form-control input-sm" type="number" min="300" ng-model="width" style="width: 70px">
+                    x
+                    <input class="form-control input-sm" type="number" min="300" ng-model="height" style="width: 70px">
+                </div>
+            </div>
+            <h4>Embed</h4>
+            <textarea class="form-control" readonly>&lt;iframe width="{{width}}" height="{{height}}" src="{{link}}" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</textarea>
+        </div>
+    </div>
+</div>

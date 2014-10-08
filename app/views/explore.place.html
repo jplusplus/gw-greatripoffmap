@@ -1,0 +1,129 @@
+<div class="container">
+  <div class="explore__place">
+
+    <a class="explore__place__back-to-map hidden-xs"
+       title="Go back to the world view"
+       ui-sref-opts="{reload: true}"
+       ui-sref="explore({juridiction: null, with: null})">
+      <span class="sr-only">Go back to the world view</span>
+    </a>
+
+    <a class="explore__place__back-to-list visible-xs"
+       title="Go back to the list"
+       ui-sref-opts="{reload: true}"
+       ui-sref="explore({juridiction: null, with: null})">
+      ⬅ Go back to the list
+    </a>
+
+    <div class="hidden-xs">
+      <div ng-show="activeView == 'companies'">
+        <h3 class="explore__place__title" ng-hide="with">
+          Stories involving anonymous companies based in <b>{{place.name}}</b>
+        </h3>
+        <h3 class="explore__place__title" ng-show="with">
+          Stories involving anonymous companies based in <b>{{place.name}}</b> relating to <b>{{with.name}}</b>
+        </h3>
+      </div>
+      <div ng-show="activeView == 'victims'">
+        <h3 class="explore__place__title" ng-hide="with">
+          Stories about victims in <b>{{place.name}}</b>
+        </h3>
+        <h3 class="explore__place__title" ng-show="with">
+          Stories about victims in <b>{{with.name}}</b> and companies based in <b>{{place.name}}</b>
+        </h3>
+      </div>
+    </div>
+    <div class="visible-xs">
+      <h3 class="explore__place__title">
+        Stories related to <b>{{place.name}}</b>
+      </h3>
+    </div>
+
+    <div class="explore__place__header">
+      <p class="pull-left explore__place__header__label">
+        Type
+      </p>
+      <div ng-repeat="(class, set) in {'hidden-xs': crimetypes, 'visible-xs': allCrimetypes}">
+        <ul class="list-inline explore__place__header__types {{class}}">
+          <li ng-repeat="slug in set" title="{{crimetype(slug).name}}">
+            <em class="sr-only">{{crimetype(slug).name}}</em>
+            <i class="type-icon type-icon--active type-icon--small type-icon--{{crimetype(slug).slug}}  explore__place__header__types__ico"></i>
+          </li>
+        </ul>
+      </div>
+      <a ng-click="startDownload()"
+         ng-class="{'explore__place__header__download--loading': downloadTimeout}"
+         class="explore__place__header__download">
+        <span class="sr-only">Download</span>
+      </a>
+      <a ng-click="print()"
+         class="explore__place__header__print">
+        <span class="fa fa-print"></span>
+      </a>
+    </div>
+    <div>
+      <p class="explore__place__victims" ng-show="!with && victims">
+        Victims in:<br />
+        <span ng-repeat="place in victims">
+          <a ui-sref="explore.place({with: place.isoa3})">{{place.name}}</a><span ng-if="!$last">, </span>
+        </span>
+      </p>
+      <p class="explore__place__victims" ng-show="!with && places">
+        Companies based in:<br />
+        <span ng-repeat="place in places">
+          <a ui-sref="explore.place({with: place.code})">{{place.name}}</a><span ng-if="!$last">, </span>
+        </span>
+      </p>
+      <p class="explore__place__victims" ng-show="with">
+        <a ui-sref="explore.place({with: null})" ng-show="victims">
+          See all the victims
+        </a>
+        <a ui-sref="explore.place({with: null})" ng-show="places">
+          See all the companies
+        </a>
+      </p>
+    </div>
+    <div ng-repeat="(class, set) in {'hidden-xs': cases, 'visible-xs': allCases}">
+      <table class="table table-bordered explore__place__cases {{class}}">
+        <thead class="explore__place__cases__header">
+          <tr>
+            <th class="explore__place__cases__header__name">
+              Case
+            </th>
+            <th class="explore__place__cases__header__company">
+              Name of company /ies
+            </th>
+            <th class="explore__place__cases__header__type">
+              Type
+            </th>
+            <th class="explore__place__cases__header__locations">
+              Location of companies
+            </th>
+          </tr>
+          <tbody>
+            <tr ng-repeat="case in set">
+              <td>
+                <a ui-sref="case({id: case.id})">
+                  {{case.name}}
+                </a>
+              </td>
+              <td>
+                <span ng-repeat="company in case.companyinvolvement">
+                  {{company.name}}<span ng-if="!$last">, </span>
+                </span>
+              </td>
+              <td>
+                {{(casecrimes(case)|map:'name').join(', ')}}
+              </td>
+              <td>
+                <span ng-repeat="place in case.companies_juridictions">
+                  {{place.name}}<span ng-if="!$last">, </span>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>

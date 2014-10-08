@@ -1,0 +1,327 @@
+.explore {
+
+  &__title {
+    text-align: center;
+    font-size:140%;
+    text-transform: normal;
+    font-weight:300;
+    background:white;
+    margin:0;
+    padding:20px;
+    b {
+      font-weight: bold;
+    }
+  }
+
+  &__how-to {
+    position:absolute;
+    z-index:@zindex-explore-how-to;
+    left:40px;
+    top:@navbar-height + @explore-header-height + @explore-tracker-height + 2px;
+    width:235px;
+    background:white;
+    .no-print();
+
+    .explore--on-focus & {
+      top:@navbar-height + @explore-tracker-height + 1px;
+    }
+
+    &--close &__title:after {
+      background-position: left bottom;
+    }
+
+    &__title {
+      background:@gray-light;
+      padding:5px;
+      margin:0;
+      text-transform:uppercase;
+      color:white;
+      cursor:pointer;
+      position:relative;
+
+      &:after {
+        content:"";
+        position:absolute;
+        top:10px;
+        right:10px;
+        background:url("../images/how-to__toggle.png") left top;
+        width:12px;
+        height:11px;
+      }
+    }
+
+    &__body {
+      padding:5px;
+      border:@gray-lighter 1px solid;
+      border-top:0;
+
+      &__legend {
+
+        &__title {
+          text-transform: uppercase;
+          margin-top:30px;
+          color:@gray-light;
+        }
+
+        &__indicator {
+          position:relative;
+          font-family: @headings-font-family;
+          line-height:100%;
+
+          img {
+            position:absolute;
+            left:20px;
+            top:0;
+          }
+
+          &__label {
+            white-space: nowrap;
+            margin-left:45px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  &__tracker {
+    height: @explore-tracker-height;
+    background:white;
+    padding:10px 40px;
+    border-bottom:2px #D7D7D7 solid;
+    position:relative;
+    z-index: @zindex-explore-header;
+
+    &__title {
+      padding:0;
+      margin:0;
+      text-transform: uppercase;
+      font-size:160%;
+      line-height: 90%;
+      float:left;
+      font-weight:300;
+
+      .explore--companies & {
+        color: @company-color;
+      }
+
+      .explore--victims & {
+        color: @victim-color;
+      }
+
+      &--name {
+        text-transform: normal;
+        font-weight:300;
+      }
+    }
+
+    &__world {
+      border:1px solid @gray-light;
+      height: 42px;
+      width: 60px;
+      float: right;
+      margin-left:20px;
+      border-radius: @border-radius-large;
+      background:url("../images/tracker__world.png") center center no-repeat;
+      cursor: pointer;
+      .no-print();
+      &, &:focus {
+        outline: 0;
+      }
+    }
+
+    &__toggler {
+      position:relative;
+      padding:0;
+      float:right;
+      text-transform: uppercase;
+      .no-print();
+
+      &__label {
+        position:absolute;
+        right:100%;
+        top:0;
+        bottom:0;
+        white-space: nowrap;
+        padding:0 10px;
+        font-family: @headings-font-family;
+        font-size: 107%;
+        height: 42px;
+        line-height: 42px;
+        color:@darken-red;
+        font-weight:bold;
+      }
+
+      ul, ol {
+        margin:0;
+        & > li {
+          padding:0;
+          margin:0;
+          float:left;
+        }
+      }
+
+
+      &__value {
+        color: @gray-light;
+        padding:0;
+        margin:0;
+        border-radius: @border-radius-large;
+        font-family: @headings-font-family;
+        font-size: 105%;
+        position:relative;
+
+        a, a:focus {
+          outline: 0;
+        }
+
+        a, a:hover {
+          height: 42px;
+          line-height: 42px;
+          cursor:pointer;
+          color:inherit;
+          display: block;
+          position:relative;
+          z-index: @zindex-explore-header + 10;
+
+          &:before {
+            position:absolute;
+            top:50%;
+            width:22px;
+            height:21px;
+            .translate(0, -50%);
+            content:"";
+            background:url("../images/tracker__toggler.png") no-repeat top right;
+          }
+        }
+
+        &--active {
+          color: #000;
+        }
+
+        &&--companies {
+          a {
+            padding-right:50px;
+          }
+
+          a:before {
+            right:10px;
+          }
+
+          // Tiny line at the center of the toggler
+          &:after {
+            position:absolute;
+            bottom:0;
+            top:0;
+            left:100%;
+            content:"";
+            border-left:1px solid @gray-light;
+          }
+        }
+
+        &--companies&--active {
+          a:before {
+            background-position: -22px top;
+          }
+        }
+
+        &&--victims {
+          a {
+            padding-left:50px;
+          }
+          a:before {
+            left:10px;
+          }
+
+          // Huge block at the center of the toggler
+          &:after {
+            .translate(50%, 0);
+            position:absolute;
+            top:0;
+            bottom:0;
+            right:100%;
+            border:1px solid @gray-light;
+            content:"";
+            width:90px;
+            border-radius: @border-radius-large;
+            z-index: @zindex-explore-header;
+          }
+        }
+
+        &--victims&--active {
+          a:before {
+            background-position: left top;
+          }
+        }
+      }
+    }
+  }
+
+  &__active-country {
+    position:absolute;
+    top:@navbar-height + @explore-header-height + @explore-tracker-height + 100px;
+    left:40px;
+    width: 235px;
+    background:white;
+    z-index:@zindex-explore-active-country;
+    border:@company-color 2px solid;
+    border-top-width: 4px;
+    border-radius: @border-radius-small;
+    font-family: @headings-font-family;
+    font-weight: 200;
+    padding:5px;
+    font-size:110%;
+
+
+  	&.ng-hide-add, &.ng-hide-remove {
+        .transition(0.6s);
+        display:block!important;
+        @media (max-width: @screen-xs-max) {
+          .transition(0s);
+          display:none!important;
+        }
+    }
+
+
+  	&.ng-hide-add.ng-hide-add-active,
+  	&.ng-hide-remove {
+  	  opacity:0;
+  	  .translate(0, -50px);
+  	}
+
+  	&.ng-hide-add,
+  	&.ng-hide-remove.ng-hide-remove-active {
+  	  opacity:1;
+  	  .translate(0, 0);
+  	}
+
+
+    &__value {
+      font-weight: bold;
+    }
+
+    &__see-details {
+      font-size:110%;
+      font-weight: bold;
+      color:inherit;
+      text-decoration: underline;
+    }
+
+    .explore--companies & {
+      border-color: @company-color;
+
+      &__value {
+        color: @company-color;
+      }
+    }
+
+    .explore--victims & {
+      border-color: @victim-color;
+
+      &__value {
+        color: @victim-color;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,92 @@
+.no-print {
+  @media print {
+    display: none;
+  }
+}
+
+.type-icon {
+
+  background:no-repeat right top;
+  width:56px;
+  height:140px/2px;
+  display: block;
+
+  &--active {
+    background-position:right bottom;
+  }
+
+  &--small {
+    width:43px;
+    height:86px/2px;
+    background-position:center bottom;
+  }
+
+  &--business {
+
+    background-image: url("../images/type-icon/business.png");
+    // Small version
+    &.type-icon--small {
+      background-image: url("../images/type-icon/business--small.png");
+    }
+  }
+
+
+  &--democracy {
+
+    background-image: url("../images/type-icon/democracy.png");
+    // Small version
+    &.type-icon--small {
+      background-image: url("../images/type-icon/democracy--small.png");
+    }
+  }
+
+
+  &--national-security {
+
+    background-image: url("../images/type-icon/national-security.png");
+    // Small version
+    &.type-icon--small {
+      background-image: url("../images/type-icon/national-security--small.png");
+    }
+  }
+
+
+  &--poor-countries {
+
+    background-image: url("../images/type-icon/poor-countries.png");
+    // Small version
+    &.type-icon--small {
+      background-image: url("../images/type-icon/poor-countries--small.png");
+    }
+  }
+
+
+  &--taxpayers {
+
+    background-image: url("../images/type-icon/taxpayers.png");
+    // Small version
+    &.type-icon--small {
+      background-image: url("../images/type-icon/taxpayers--small.png");
+    }
+  }
+
+
+  &--the-vulnerable {
+
+    background-image: url("../images/type-icon/the-vulnerable.png");
+    // Small version
+    &.type-icon--small {
+      background-image: url("../images/type-icon/the-vulnerable--small.png");
+    }
+  }
+
+  &--other-crimes {
+
+    background-image: url("../images/type-icon/other-crimes.png");
+    // Small version
+    &.type-icon--small {
+      background-image: url("../images/type-icon/other-crimes--small.png");
+    }
+  }
+}
+

@@ -1,0 +1,8 @@
+<div class="explore__map__loading" ng-show="mapLoading">
+  <div class="explore__map__loading__circle">
+    Loading...
+  </div>
+</div>
+<div ng-if="center" class="explore__map__wrapper" height-to-bottom="400">
+  <leaflet id="main-map" center="center" tiles="tiles" defaults="defaults" maxbounds="maxbounds" width="100%" height="100%"></leaflet>
+</div>

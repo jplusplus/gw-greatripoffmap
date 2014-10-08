@@ -1,0 +1,127 @@
+.page {
+
+  margin:20px 0;
+  background:white;
+  border-top:4px solid #989898;
+  border-bottom:2px solid @gray-light;
+  padding:10px;
+  position:relative;
+
+  a {
+    text-decoration: underline;
+  }
+
+  &__title {
+    margin:0;
+    margin-bottom:30px;
+    padding:0;
+    padding-right:70px;
+    color:@darken-red;
+    font-weight: lighter;
+  }
+
+  &__subtitle {
+    a {
+      color:inherit;
+      text-decoration: none;
+    }
+  }
+
+  &__back-to-explore {
+    border:1px solid @gray-light;
+    height: 42px;
+    width: 60px;
+    border-radius: @border-radius-large;
+    background:url("../images/tracker__world.png") center center no-repeat;
+    cursor: pointer;
+    position:absolute;
+    top:10px;
+    right:10px;
+    z-index: 10;
+    .no-print();
+  }
+
+  &__carousel {
+
+    @base-color: @darken-red;
+    position:relative;
+    margin-bottom:40px;
+
+    &__controls {
+      position:absolute;
+      top:0;
+      right:0;
+      left:0;
+
+      &__next, &__previous {
+        position:absolute;
+        top:125px;
+        background:red;
+        width:26px;
+        height:32px/2px;
+        cursor:pointer;
+        &:hover {
+          background-position:center bottom;
+        }
+      }
+
+      &__next {
+        right:15px;
+        background:url("../images/control-next.png");
+      }
+
+      &__previous {
+        left:15px;
+        background:url("../images/control-previous.png");
+      }
+    }
+
+    &__item {
+
+      &__image {
+        height:250px;
+        .no-print();
+      }
+
+    }
+
+    &__preview {
+      padding:10px;
+      background:@base-color;
+      color:white;
+      &__title {
+        margin-top:0;
+        a {
+          color:inherit;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .rn-carousel-container {
+      background:@navbar-inverse-bg;
+
+      .rn-carousel-indicator {
+        text-align: right;
+        font-size: 200%;
+        height: 30px;
+        margin-top:-30px;
+        line-height: 30px;
+        padding:0 5px;
+        background:none;
+        .no-print();
+
+        & > span {
+          padding:0;
+          color:@base-color;
+          text-shadow:1px 1px 0 white, -1px -1px 0 white, -1px 1px 0 white, 1px -1px 0 white;
+          &.active {
+            color:white;
+          }
+        }
+      }
+    }
+
+  }
+
+}

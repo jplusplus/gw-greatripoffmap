@@ -1,0 +1,51 @@
+<header class="header navbar navbar-default navbar-inverse">
+  <div class="navbar-header">
+    <a class="navbar-brand header__brand" ui-sref="home">
+      The Great Rip Off <sup>beta</sup>
+    </a>
+  </div>
+  <div class="collapse navbar-collapse hidden-xs">
+    <ul class="nav navbar-nav navbar-left header__navigation">
+      <li>
+        <a ui-sref="explore({view: 'companies'})">Map</a>
+      </li>
+      <li>
+        <a ui-sref="about">About</a>
+      </li>
+      <li>
+        <a ui-sref="featured-stories">Featured stories</a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/watch?v=B4Ym9yWh2VM&feature=youtu.be" target="_blank">Watch film</a>
+      </li>
+      <li>
+        <a ui-sref="contribute">Contribute</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right header__links">
+      <li>
+        <a ng-click="tweet()" title="Tweet this">
+          <img src="./images/twitter.png" alt="Twitter" />
+        </a>
+      </li>
+      <li>
+        <a href="https://www.facebook.com/EndAnonymousCompanies" target="_blank" title="The Great Rip Off on Facebook">
+          <img src="./images/facebook.png" alt="Facebook" />
+        </a>
+      </li>
+      <li>
+        <a ng-click="share()">
+          <span class="hidden-sm">Share&nbsp;</span>
+          <span class="fa fa-share-alt fa-lg"></span>
+        </a>
+      </li>
+      <li>
+        <a ng-click="startDownload()">
+          <span class="hidden-sm">Download all stories&nbsp;</span>
+          <span class="fa fa-download fa-lg" ng-if="!downloadTimeout"></span>
+          <span class="fa fa-circle-o-notch fa-spin fa-lg" ng-if="downloadTimeout"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>

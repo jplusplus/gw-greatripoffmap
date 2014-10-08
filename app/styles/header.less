@@ -1,0 +1,25 @@
+.header {
+
+  z-index:@zindex-header;
+  margin:0;
+  padding-left:20px;
+
+  & &__brand {
+    color:white;
+  }
+
+  &__brand, &__navigation, &__links {
+    font-family: @headings-font-family;
+    font-size: 100%;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  & &__links {
+    li a {
+      cursor: pointer;
+      color:white;
+      padding:15px 10px;
+    }
+  }
+}
