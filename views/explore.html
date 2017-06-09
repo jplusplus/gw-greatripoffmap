@@ -1,0 +1,228 @@
+<div class="explore explore--{{activeView}}"
+     ng-class="{'explore--on-focus': state.is('explore.place'), 'explore--with': activeWith, 'explore--on-juridiction': activeJuridiction }">
+
+  <h1 class="explore__title visible-xs" ng-if="state.is('explore')">
+    <b ng-show="activeType">{{crimetype(activeType).name}}</b> stories involving anonymous companies
+  </h1>
+
+  <div class="explore__header animation-slide" ng-hide="state.is('explore.place')">
+
+    <ul class="explore__header__filters hidden-xs list-unstyled">
+      <li class="explore__header__filters__item explore__header__filters__item--static">
+        <span class="explore__header__filters__item__value">
+          Filters:
+        </span>
+      </li>
+      <li class="explore__header__filters__item" ng-class="filterClasses(null)">
+        <a class="explore__header__filters__item__value" ng-click="filterBy(null)">
+          All
+        </a>
+      </li>
+
+      <li class="explore__header__filters__item" ng-class="filterClasses('national-security')">
+        <a class="explore__header__filters__item__value" ng-click="filterBy('national-security')">
+          <i class="type-icon type-icon--national-security"></i>
+          National<br />security
+        </a>
+      </li>
+
+      <li class="explore__header__filters__item" ng-class="filterClasses('taxpayers')">
+        <a class="explore__header__filters__item__value" ng-click="filterBy('taxpayers')">
+          <i class="type-icon type-icon--taxpayers"></i>
+          Taxpayers
+        </a>
+      </li>
+
+      <li class="explore__header__filters__item" ng-class="filterClasses('the-vulnerable')">
+        <a class="explore__header__filters__item__value" ng-click="filterBy('the-vulnerable')">
+          <i class="type-icon type-icon--the-vulnerable"></i>
+          The<br />vulnerable
+        </a>
+      </li>
+
+      <li class="explore__header__filters__item" ng-class="filterClasses('business')">
+        <a class="explore__header__filters__item__value" ng-click="filterBy('business')">
+          <i class="type-icon type-icon--business"></i>
+          Business
+        </a>
+      </li>
+
+      <li class="explore__header__filters__item" ng-class="filterClasses('poor-countries')">
+        <a class="explore__header__filters__item__value" ng-click="filterBy('poor-countries')">
+          <i class="type-icon type-icon--poor-countries"></i>
+          Poor<br />countries
+        </a>
+      </li>
+
+      <li class="explore__header__filters__item" ng-class="filterClasses('other-crimes')">
+        <a class="explore__header__filters__item__value" ng-click="filterBy('other-crimes')">
+          <i class="type-icon type-icon--other-crimes"></i>
+          Other
+        </a>
+      </li>
+    </ul>
+
+    <label class="explore__header__filters-list visible-xs">
+      <div  class="explore__header__juridiction__label">
+        Show only places involved in
+      </div>
+      <select ng-model="activeType" ng-options="name as label for (name, label) in crimetypes">
+        <option value="">Choose a type</option>
+      </select>
+    </label>
+
+
+    <label class="explore__header__juridiction hidden-xs">
+      <div  class="explore__header__juridiction__label">
+        Focus on a place
+      </div>
+      <select ng-change="focusOn(placeFocus)" ng-model="placeFocus" ng-options="place.code as place.name group by place.zone for place in juridictions | filter:allowFocus | orderBy:'name'">
+        <option value="">Choose</option>
+      </select>
+    </label>
+
+    <label class="explore__header__juridiction explore__header__juridiction--xs visible-xs">
+      <div  class="explore__header__juridiction__label">
+        Focus on a place
+      </div>
+      <select ng-change="focusOn(placeFocus)" ng-model="placeFocus" ng-options="place.code as place.name group by place.zone for place in juridictions | orderBy:'name'">
+        <option value="">Choose</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="explore__tracker  hidden-xs">
+
+    <h1 class="explore__tracker__title explore__tracker__title--name">
+
+      <span ng-show="activeView == 'companies'">
+
+        <span ng-show="activeType != null">
+          <b>{{crimetype(activeType).name}}</b>
+        </span>
+        stories involving anonymous companies<br />
+        <span ng-show="activeJuridiction">
+          based in <b>{{getPlace().name}}</b>
+          <span ng-show="activeWith">
+            relating to <b>{{getPlace(activeWith).name}}</b>
+          </span>
+        </span>
+
+      </span>
+
+
+      <span ng-show="activeView == 'victims'">
+
+        <span ng-show="activeType != null">
+          <b>{{crimetype(activeType).name}}</b>
+        </span>
+        stories about victims<br />
+        <span ng-show="activeJuridiction">
+          in <b>{{getPlace().name}}</b>
+          <span ng-show="activeWith">
+            and companies based in
+            <b>{{getPlace(activeWith).name}}</b>
+          </span>
+        </span>
+
+      </span>
+    </h1>
+
+    <a class="explore__tracker__world"
+       title="Go back to the world view"
+       ng-click="activeJuridiction = null"
+       ui-sref="explore"
+       ng-show="activeJuridiction">
+      <span class="sr-only">Go back to the world view</span>
+    </a>
+
+
+    <div class="explore__tracker__toggler">
+      <div class="explore__tracker__toggler__label">
+        Find:
+      </div>
+      <ul class="list-inline">
+        <li class="explore__tracker__toggler__value explore__tracker__toggler__value--companies" ng-class="{'explore__tracker__toggler__value--active': activeView == 'companies' }">
+          <a ui-sref="explore({view: 'companies'})">
+            Companies
+          </a>
+        </li>
+        <li class="explore__tracker__toggler__value explore__tracker__toggler__value--victims" ng-class="{'explore__tracker__toggler__value--active': activeView == 'victims' }">
+          <a ui-sref="explore({view: 'victims'})">
+            Victims
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="explore__active-country hidden-xs" ng-show="activeJuridiction && state.is('explore')">
+    <!-- CASE: one juridction selected in CRIMES VIEW -->
+    <p ng-show="!activeWith && activeView == 'companies'">
+      <b>{{getPlace().name}}</b><br />
+      <span ng-show="activeType != null"><b>{{crimetype(activeType).name}}</b></span>
+      stories about <b>{{count('companies')}}</b> anonymous {{'company'|n:count('companies')}}
+      relating to <b>{{count('victims')}}</b> {{'place'|n:count('victims')}}
+    </p>
+    <!-- CASE: two juridctions selected in CRIMES VIEW -->
+    <p ng-show="activeWith && activeView == 'companies'">
+      <b>{{getPlace().name}}</b><br />
+      <span ng-show="activeType != null"><b>{{crimetype(activeType).name}}</b></span>
+      stories about <b>{{count('companies')}}</b> anonymous {{'company'|n:count('companies')}}
+      relating to <b>{{getPlace(activeWith).name}}</b>
+    </p>
+    <!-- CASE: one juridction selected in VICTIMS VIEW -->
+    <p ng-show="!activeWith && activeView == 'victims'">
+      <b>{{getPlace().name}}</b><br />
+      <span ng-show="activeType != null"><b>{{crimetype(activeType).name}}</b></span>
+      stories about <b>{{count('companies')}}</b> anonymous {{'company'|n:count('companies')}}
+      based in <b>{{count('victims')}}</b> {{'place'|n:count('victims')}}
+    </p>
+    <!-- CASE: two juridctions selected in VICTIMS VIEW -->
+    <p ng-show="activeWith && activeView == 'victims'">
+      <b>{{getPlace().name}}</b><br />
+      <span ng-show="activeType != null"><b>{{crimetype(activeType).name}}</b></span>
+      stories about <b>{{count('companies')}}</b> anonymous {{'company'|n:count('companies')}}
+      based in <b>{{getPlace(activeWith).name}}</b>
+    </p>
+
+    <a class="explore__active-country__see-details" ui-sref="explore.place({ code: activeJuridiction, with: activeWith, type: activeType })">
+      see details
+    </a>
+  </div>
+
+  <div class="explore__how-to hidden-xs" ng-class="{'explore__how-to--close': hideHowTo}">
+    <h4 class="explore__how-to__title" ng-click="hideHowTo = !hideHowTo">
+    	How to use the map
+    </h4>
+    <div class="explore__how-to__body animation-slide" ng-hide="hideHowTo">
+	    <p>Choose between finding anonymous companies and their victims at the top right.
+	    Click or tap on a blue circle to see stories about anonymous companies from that place.
+	    Click or tap on a red dot to see stories about anonymous companies that have affected that place.
+	    Look at specific types of story by using the filter buttons at the top.</p>
+      <div class="explore__how-to__body__legend">
+        <h5 class="explore__how-to__body__legend__title">Legend</h5>
+        <div class="row">
+          <div class="col-xs-6 explore__how-to__body__legend__indicator">
+            <img src="./images/how-to__legend__crimes.png" />
+            <div class="explore__how-to__body__legend__indicator__label">
+              Number of<br />anonymous<br />companies
+            </div>
+          </div>
+          <div class="col-xs-6 explore__how-to__body__legend__indicator">
+            <img src="./images/how-to__legend__victims.png" />
+            <div class="explore__how-to__body__legend__indicator__label">
+              Location<br />of their<br />victims
+            </div>
+          </div>
+        </div>
+      </div>
+	  </div>
+  </div>
+
+  <map class="explore__map hidden-xs" ng-class="{ 'explore__map--country-focus': activeJuridiction }" />
+  <div ng-include="'views/explore.list.html'" ng-show="state.is('explore')"></div>
+  <!-- NESTED VIEW -->
+  <div ui-view></div>
+</div>

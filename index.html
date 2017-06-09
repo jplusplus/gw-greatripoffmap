@@ -1,0 +1,80 @@
+<!doctype html>
+<html class="no-js" ng-app="gwAnonShellApp">
+  <head>
+    <!--░░░░▄░░░░░░░░░░░░░░▄░░░░░
+    ░░░░░░░░▌▒█░░░░░░░░░░░▄▀▒▌░░░
+    ░J++░░░░▌▒▒█░░░░░░░░▄▀▒▒▒▐░░░
+    ░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐░░░
+    ░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐░░░
+    ░░░▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌░░░
+    ░░▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒▌░░
+    ░░▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐░░
+    ░▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄▌░
+    ░▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▌░
+    ▀▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒▐░
+    ▐▒▒▐▀▐▀▒░▄▄▒▄▒▒▒▒▒▒░▒░▒░▒▒▒▒▌
+    ▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒▒▒░▒░▒░▒▒▐░
+    ░▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒░▒░▒░▒░▒▒▒▌░
+    ░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▒▄▒▒▐░░
+    ░░▀▄▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▄▒▒▒▒▌░░
+    ░░░░▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀░░░
+    ░░░░░░▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀░░░░░
+    ░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▀▀░░░░░-->
+    <meta charset="utf-8">
+    <title>The Great Rip-Off - Global Witness</title>
+    <meta name="description" content="This is a project to map the abuse of anonymous company ownership around the world. It reveals a shocking picture. Anonymous companies have been involved in the laundering of billions of dollars, in crimes ranging from ‘modern day slavery’ to fraudsters stealing from ordinary investors.">
+    <meta name="viewport" content="width=500, initial-scale=1, maximum-scale=1">
+    <meta name="fragment" content="!">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="styles/main.c469bc69.css">
+    <link rel="stylesheet" href="styles/vendor.e031f954.css">
+    <meta property="og:image" content="http://greatripoffmap.globalwitness.org/images/preview.png" />
+    <meta property="og:image" content="http://greatripoffmap.globalwitness.org/images/russian-dolls.png" />
+    <!-- Contextual og tags -->
+    <ui-view name="og">
+      <meta property="og:description" content="This is a project to map the abuse of anonymous company ownership around the world. It reveals a shocking picture. Anonymous companies have been involved in the laundering of billions of dollars, in crimes ranging from ‘modern day slavery’ to fraudsters stealing from ordinary investors." />
+    </ui-view>
+  </head>
+  <body>
+
+
+    <!--[if lt IE 9]>
+    <div class="browser-update" ng-hide="hideBrowserUpdate">
+      <strong>Your browser is out of date!</strong>
+      You're using an old version of Internet Explorer. For the best experience, please <a href="http://browsehappy.com/" target="_blank">update your browser</a>.
+      <button ng-click="hideBrowserUpdate = true" class="pull-right btn btn-lg btn-link">
+        <i class="fa fa-times fa-lg"></i>
+      </button>
+    </div>
+    <![endif]-->
+
+
+    <div class="main" ng-controller="MainCtrl">
+      <div ng-include="'views/header.html'"></div>
+      <div ui-view></div>
+      <div ng-include="'views/footer.html'"></div>
+    </div>
+
+    <!-- Twitter widget -->
+    <script src="http://platform.twitter.com/widgets.js"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-55433343-1');
+       ga('send', 'pageview');
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="scripts/oldieshim.693a1bc0.js"></script>
+    <![endif]-->
+
+    <script src="scripts/vendor.2e8bdcca.js"></script>
+
+    <script src="scripts/scripts.29f543c7.js"></script>
+</body>
+</html>

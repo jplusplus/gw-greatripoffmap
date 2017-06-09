@@ -1,0 +1,6 @@
+<meta property="og:title" content="{{case.name}} - The Great Rip-Off - Global Witness" />
+<meta property="og:image" content="{{case.image}}" ng-if="case.image" />
+<meta property="og:image" content="{{case.image_2}}" ng-if="case.image_2" />
+<meta property="og:image" content="{{case.video|youtubeThumbnail}}" ng-if="case.video" />
+<meta property="og:video" content="{{case.video}}" ng-if="case.video" />
+<meta property="og:description" content="{{case.content|characters:300}}" />

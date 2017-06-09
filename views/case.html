@@ -1,0 +1,59 @@
+<!-- Case body -->
+<div class="container">
+  <div class="case page">
+    <h2 class="case__title page__title">{{case.name}}</h2>
+    <a class="page__back-to-explore"
+       title="Go back to the world view"
+       ui-sref-opts="{reload: true}"
+       ui-sref="explore({juridiction:null, with:null, view: 'companies'})">
+      <span class="sr-only">Go back to the world view</span>
+    </a>
+    <div class="row case__details">
+      <div class="col-sm-7 col-sm-push-5">
+        <div class="case__story" ng-bind-html="case.story | addTargetBlank"></div>
+        <div class="well well-sm pull-right">
+          <span class="btn btn-xs btn-link">
+            <a twitter via="global_witness" text="{{case.name}}">Share on twitter</a>
+          </span>
+        </div>
+      </div>
+      <div class="col-sm-5 col-sm-pull-7">
+        <p>
+          <youtube-video ng-if="case.video" player-width="'100%'" player-height="250" video-url="case.video"></youtube-video>
+          <img ng-if="case.image" class="img-responsive img-thumbnail" ng-src="{{case.image}}" />
+          <img ng-if="case.image_2" class="img-responsive img-thumbnail" ng-src="{{case.image_2}}" />
+        </p>
+        <ul class="list-unstyled">
+          <li>
+            <strong>Type</strong>:
+            {{(casecrimes(case)|map:'name').join(', ')}}
+          </li>
+          <li>
+            <strong>Location of victims</strong>:
+            <span ng-repeat="place in case.victims">
+              <a ui-sref="explore.place({code: place.isoa3, view: 'victims'})">{{place.name}}</a><span ng-if="!$last">, </span>
+            </span>
+          </li>
+          <li>
+            <strong>Location of companies</strong>:
+            <span ng-repeat="place in companiesJuridictions">
+              <a ui-sref="explore.place({code: place.code, view: 'companies'})">{{place.name}}</a><span ng-if="!$last">, </span>
+            </span>
+          </li>
+          <li>
+            <strong>Names of companies</strong>:
+            <span ng-repeat="company in case.companyinvolvement">
+              {{company.name}}<span ng-if="!$last">, </span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-right" ng-show="state.previous.state.name == 'explore.place'">
+      <a ui-sref="explore.place(state.previous.params)">
+        ⬅ Back to companies list
+      </a>
+    </div>
+  </div>
+</div>
+
