@@ -17,7 +17,7 @@ publish:
 	git checkout --orphan public
 	git add -A
 	git commit -am "Auto commit"
-	git push --force git@github.com:Pirhoo/gw-greatripoffmap.git public:master
+	git push --force git@github.com:jplusplus/gw-greatripoffmap.git public:master
 	git checkout master
 
 prefetch:

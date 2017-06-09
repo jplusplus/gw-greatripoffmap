@@ -408,7 +408,7 @@ module.exports = function (grunt) {
         options: {
           dir: '<%= yeoman.dist %>',
           remote: 'git@github.com:jplusplus/gw-greatripoffmap.git',
-          branch: 'master',
+          branch: 'gh-pages',
           commit: true,
           push: true,
           message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
