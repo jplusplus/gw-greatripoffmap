@@ -1,0 +1,116 @@
+.home {
+
+  z-index: @zindex-home;
+  background: #AE1A1F url("../images/home.png") center center;
+  background-size: cover;
+  position:relative;
+  color:white;
+  overflow:hidden;
+
+  &__intro {
+    position:relative;
+    z-index:20;
+    pointer-events:none;
+
+    h2 {
+      text-transform: uppercase;
+      em {
+        font-style: normal;
+        color:#CBD3D1;
+      }
+    }
+
+    &__indicator {
+      display: block;
+      color:white;
+      background:#626262;
+      text-transform: uppercase;
+      padding:5px 2px;
+      padding-left:8px;
+      margin-bottom:5px;
+      font-family: @headings-font-family;
+      font-weight: bold;
+      line-height:95%;
+      font-size:105%;
+      width:130px;
+
+      &--places {
+        margin-top:60px;
+        background: @brand-primary;
+      }
+
+      &--places &__figure span {
+        font-weight: bold;
+        background:black;
+        color:white;
+      }
+
+      &__figure {
+        float:right;
+        display: block;
+        line-height:120%;
+        padding:0 2px;
+        margin:0;
+        margin-top:-2px;
+        span {
+          display: inline-block;
+          width:11px;
+          margin-left:1px;
+          text-align:center;
+          background:white;
+          color:black;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+
+  &__go-to-explore {
+    line-height:100%;
+    font-size:120%;
+    position:absolute;
+    z-index:10;
+    right: 700/2px;
+    bottom: 700/2px;
+    width:200px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    color:white;
+    font-family: @headings-font-family;
+    text-align: center;
+    font-weight: bold;
+
+    &, &:focus {
+      outline: 0;
+    }
+
+    @media (max-width: @screen-sm-max) {
+      right:60px;
+      left:auto;
+      bottom:60px;
+      position: relative;
+      width:auto;
+      float:right;
+      display: block;
+
+      &:before {
+
+      }
+    }
+
+    &__wrapper {
+      position:relative;
+      z-index:10;
+    }
+
+    &:before {
+      z-index:0;
+      content:url("../images/home__go-to-explore.png");
+      position:absolute;
+      top:50%;
+      left:50%;
+      .translate(-50%, -50%);
+    }
+  }
+}

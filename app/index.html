@@ -1,0 +1,157 @@
+<!doctype html>
+<html class="no-js" ng-app="gwAnonShellApp">
+  <head>
+    <!--░░░░▄░░░░░░░░░░░░░░▄░░░░░
+    ░░░░░░░░▌▒█░░░░░░░░░░░▄▀▒▌░░░
+    ░J++░░░░▌▒▒█░░░░░░░░▄▀▒▒▒▐░░░
+    ░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐░░░
+    ░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐░░░
+    ░░░▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌░░░
+    ░░▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒▌░░
+    ░░▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐░░
+    ░▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄▌░
+    ░▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▌░
+    ▀▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒▐░
+    ▐▒▒▐▀▐▀▒░▄▄▒▄▒▒▒▒▒▒░▒░▒░▒▒▒▒▌
+    ▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒▒▒░▒░▒░▒▒▐░
+    ░▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒░▒░▒░▒░▒▒▒▌░
+    ░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▒▄▒▒▐░░
+    ░░▀▄▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▄▒▒▒▒▌░░
+    ░░░░▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀░░░
+    ░░░░░░▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀░░░░░
+    ░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▀▀░░░░░-->
+    <meta charset="utf-8">
+    <title>The Great Rip-Off - Global Witness</title>
+    <meta name="description" content="This is a project to map the abuse of anonymous company ownership around the world. It reveals a shocking picture. Anonymous companies have been involved in the laundering of billions of dollars, in crimes ranging from ‘modern day slavery’ to fraudsters stealing from ordinary investors.">
+    <meta name="viewport" content="width=500, initial-scale=1, maximum-scale=1">
+    <meta name="fragment" content="!">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/base.css">
+    <!-- endbuild -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-carousel/dist/angular-carousel.css" />
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <meta property="og:image" content="http://greatripoffmap.globalwitness.org/images/preview.png" />
+    <meta property="og:image" content="http://greatripoffmap.globalwitness.org/images/russian-dolls.png" />
+    <!-- Contextual og tags -->
+    <ui-view name="og">
+      <meta property="og:description" content="This is a project to map the abuse of anonymous company ownership around the world. It reveals a shocking picture. Anonymous companies have been involved in the laundering of billions of dollars, in crimes ranging from ‘modern day slavery’ to fraudsters stealing from ordinary investors." />
+    </ui-view>
+  </head>
+  <body>
+
+
+    <!--[if lt IE 9]>
+    <div class="browser-update" ng-hide="hideBrowserUpdate">
+      <strong>Your browser is out of date!</strong>
+      You're using an old version of Internet Explorer. For the best experience, please <a href="http://browsehappy.com/" target="_blank">update your browser</a>.
+      <button ng-click="hideBrowserUpdate = true" class="pull-right btn btn-lg btn-link">
+        <i class="fa fa-times fa-lg"></i>
+      </button>
+    </div>
+    <![endif]-->
+
+
+    <div class="main" ng-controller="MainCtrl">
+      <div ng-include="'views/header.html'"></div>
+      <div ui-view></div>
+      <div ng-include="'views/footer.html'"></div>
+    </div>
+
+    <!-- Twitter widget -->
+    <script src="http://platform.twitter.com/widgets.js"></script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-55433343-1');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.min.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-carousel/dist/angular-carousel.js"></script>
+    <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
+    <script src="bower_components/angular-inflector/dist/angular-inflector.min.js"></script>
+    <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
+    <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-scroll/angular-scroll.js"></script>
+    <script src="bower_components/angular-truncate/src/truncate.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-youtube-mb/src/angular-youtube-embed.js"></script>
+    <script src="bower_components/chroma-js/chroma.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <script src="bower_components/leaflet-dvf/index.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/restangular/dist/restangular.js"></script>
+    <!-- endbower -->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <!-- ANIMATIONS -->
+    <script src="scripts/animations/slide.js"></script>
+    <!-- CONFIGS -->
+    <script src="scripts/configs/restangular.js"></script>
+    <script src="scripts/configs/safeApply.js"></script>
+    <script src="scripts/configs/sce.js"></script>
+    <script src="scripts/configs/statePrevious.js"></script>
+    <script src="scripts/configs/states.js"></script>
+    <!-- CONSTANTS -->
+    <script src="scripts/constants/api.js"></script>
+    <script src="scripts/constants/crimetypes.js"></script>
+    <script src="scripts/constants/settings.js"></script>
+    <!-- CONTROLLERS -->
+    <script src="scripts/controllers/case.js"></script>
+    <script src="scripts/controllers/explore.js"></script>
+    <script src="scripts/controllers/explorePlace.js"></script>
+    <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/featuredstories.js"></script>
+    <!-- DIRECTIVES -->
+    <script src="scripts/directives/heighttobottom.js"></script>
+    <script src="scripts/directives/linkTarget.js"></script>
+    <script src="scripts/directives/map.js"></script>
+    <script src="scripts/directives/twitter.js"></script>
+    <!-- SERVICES -->
+    <script src="scripts/services/cases.js"></script>
+    <script src="scripts/services/companies.js"></script>
+    <script src="scripts/services/coordinates.js"></script>
+    <script src="scripts/services/crimetypes.js"></script>
+    <script src="scripts/services/placeaggregation.js"></script>
+    <script src="scripts/services/tree.js"></script>
+    <script src="scripts/services/utils.js"></script>
+    <!-- FILTERS -->
+    <script src="scripts/filters/addtargetblank.js"></script>
+    <script src="scripts/filters/n.js"></script>
+    <script src="scripts/filters/striptags.js"></script>
+    <script src="scripts/filters/wrapletters.js"></script>
+    <script src="scripts/filters/youtubethumbnail.js"></script>
+    <script src="scripts/filters/zerofill.js"></script>
+    <script src="scripts/controllers/share.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

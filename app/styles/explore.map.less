@@ -1,0 +1,268 @@
+.explore__map {
+  overflow: hidden;
+  background:white;
+  position:relative;
+  display: block;
+
+  &__loading {
+    padding:100px 0;
+    text-align:center;
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index: @zindex-header;
+    background: white;
+    text-align: center;
+
+    &__circle {
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      border-radius: 40px;
+      white-space: nowrap;
+      display: block;
+      margin:auto;
+      font-family: @headings-font-family;
+
+      .explore--companies & {
+        color:darken(@company-color, 10%);
+        border:1px solid darken(@company-color, 10%);
+      }
+
+      .explore--victims & {
+        color:darken(@victim-color, 10%);
+        border:1px solid darken(@victim-color, 10%);
+      }
+
+    }
+  }
+
+  &, g {
+    .transform-origin(center center);
+  }
+
+  &:after {
+    z-index: -1;
+    content:"";
+    height: 1px;
+    margin-top: -1px;
+    width:40%;
+    min-width:200px;
+    height:200px;
+    border-radius: 100px;
+    display: block;
+    position:absolute;
+    bottom:0;
+    left:50%;
+    .translate(-50%, 0);
+    .box-shadow(0 0 70px 0 fade(#000, 40%) );
+    .no-print();
+  }
+
+  .leaflet-popup-content-wrapper {
+    border-radius: @border-radius-small;
+    color:#fff;
+    font-size:14px;
+    font-weight: bold;
+    text-align: center;
+    font-family: @headings-font-family;
+    background:#626262;
+  }
+
+  .leaflet-popup-close-button {
+    display: none;
+  }
+
+  .leaflet-popup-content {
+    margin:0 5px;
+  }
+
+  .leaflet-popup-tip-container {
+    width:30px;
+    height:20px;
+    line-height: 5px;
+    font-size:30px;
+    position:relative;
+  }
+
+  .leaflet-popup-pane {
+    pointer-events:none;
+  }
+
+  .leaflet-popup-tip {
+    border: 0;
+    position: relative;
+    background: none;
+    margin:auto;
+    width:auto;
+    height:auto;
+    .rotate(0);
+    .box-shadow(none);
+
+    &:after {
+      color:#626262;
+      text-align: center;
+      content:"↧";
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      text-shadow:0px 3px 8px rgba(0, 0, 0, 0.8);
+    }
+  }
+
+  &__wrapper {
+    position:relative;
+    z-index: @zindex-explore-map;
+    height:100%;
+    .leaflet-container {
+      background:white;
+    }
+  }
+
+  &__feature {
+    cursor: default;
+    fill: #e6e6e6;
+    fill-opacity: 1;
+    stroke: #fff;
+    stroke-width:  1;
+    stroke-opacity:  1;
+    stroke-dasharray:  none;
+    opacity: 1;
+    color: white;
+    .transition(fill 0.3s);
+
+    &--active {
+      fill: #CED4D2;
+    }
+
+    .explore--companies.explore--with &--active-with {
+      fill: @victim-color;
+    }
+
+    .explore--victims.explore--with &--active-with {
+      fill: @company-color;
+    }
+
+    .explore--companies &--could-activate {
+      cursor:pointer;
+      fill: mix(@victim-color, #ccc, 10%);
+    }
+
+    .explore--victims &--could-activate {
+      cursor:pointer;
+      fill: mix(@company-color, #ccc, 10%);
+    }
+
+  }
+
+  &__extremity {
+    fill: @victim-color;
+    fill-opacity: 1;
+    stroke-width: 0;
+
+    .explore--with  & {
+      opacity:0.3;
+    }
+
+    .explore--with &--active {
+      opacity:1;
+    }
+  }
+
+  &__circle {
+    fill: @company-color;
+    fill-opacity: 0;
+    stroke: @company-color;
+    stroke-opacity: 1;
+    cursor: default;
+    .transition(opacity 0.4s);
+
+    .explore--companies & {
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+        fill-opacity: 0.6;
+      }
+    }
+
+    .explore--with  & {
+      opacity:0.3;
+    }
+
+    .explore--with &--active {
+      opacity:1;
+    }
+  }
+
+  &__link {
+    stroke: @company-color;
+    stroke-opacity: 1;
+    opacity: 1;
+    pointer-events:none;
+
+    .explore--with  & {
+      opacity:0.3;
+    }
+
+    .explore--with &--active {
+      opacity:1;
+    }
+  }
+
+  &__draws {
+
+    pointer-events:none;
+    position:relative;
+    z-index:100;
+
+    line {
+      stroke-width:2px;
+    }
+  }
+
+  .explore--companies &--country-focus &__circle {
+    opacity: 0.3;
+
+    &--active, &--active:hover {
+      opacity: 1;
+      fill-opacity: 0.6;
+    }
+  }
+
+  .explore--victims &--country-focus &__extremity {
+    opacity: 0.3;
+    &--active, &--active:hover {
+      opacity: 1;
+      fill-opacity: 1;
+    }
+  }
+
+  .explore--victims &__circle {
+    pointer-events:none;
+  }
+
+  .explore--victims.explore--on-juridiction &__circle {
+    pointer-events:all;
+  }
+
+
+  .explore--on-focus & {
+    .no-print();
+  }
+
+  .explore--on-focus.explore--companies & {
+    .explore__map__circle:not(.explore__map__circle--active) {
+      display: none;
+    }
+  }
+
+  .explore--on-focus.explore--victims & {
+    .explore__map__extremity:not(.explore__map__extremity--active) {
+      display: none;
+    }
+  }
+}

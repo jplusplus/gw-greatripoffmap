@@ -1,0 +1,29 @@
+<div class="explore__list visible-xs container">
+  <div class="row">
+    <div ng-repeat="juridiction in juridictions|orderBy:'name'" class="col-xs-6">
+      <div class="panel panel-default explore__list__juridiction">
+        <div class="panel-heading explore__list__juridiction__heading">
+          {{juridiction.name}}
+        </div>
+        <div class="panel-body explore__list__juridiction__body">
+          <ul class="list-unstyled">
+            <li>
+              Anonymous companies: <b>{{juridiction.companies.length}}</b>
+            </li>
+            <li>
+              Countries affected: <b>{{juridiction.victims.length}}</b>
+            </li>
+          </ul>
+          <ul class="list-unstyled">
+            <li>
+              Anonymous companies that affect this place: <b>{{juridiction.victims_companies.length}}</b>
+            </li>
+          </ul>
+          <a class="explore__list__juridiction__body__see-details" ui-sref="explore.place({ code: juridiction.code, type: activeType })">
+            see details
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

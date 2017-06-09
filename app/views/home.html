@@ -1,0 +1,31 @@
+<div class="home" height-to-bottom="600">
+  <div class="container">
+    <div class="row home__intro">
+      <div class="col-md-7">
+        <h2>The Great Rip Off: <em>Anonymous companies and their victims</em></h2>
+      </div>
+      <div class="col-md-12"></div>
+      <div class="col-md-4">
+        <p>We all know what it feels like to get ripped off. Fraudsters cheat vulnerable people. Corrupt public officials steal government money. Terrorists and mobsters run criminal enterprises that hurt us all.</p>
+        <p>But we know less about the tricks many of these criminals use. Such crimes often have one thing in common – the criminals have relied on the secrecy provided by anonymous companies to hide their activities.</p>
+        <p>Often, these companies are hidden one inside another, like Russian dolls, making it even harder to work out who’s actually behind them.</p>
+        <p>This is a project to map the abuse of anonymous company ownership around the world. It reveals a shocking picture. Anonymous companies have been involved in the laundering of billions of dollars, in crimes ranging from ‘modern day slavery’ to fraudsters stealing from ordinary investors.</p>
+        <p>
+          <div class="home__intro__indicator home__intro__indicator--places">
+            Places
+            <span class="home__intro__indicator__figure" ng-bind-html="places|zerofill:3|wrapletters"></span>
+          </div>
+          <div class="home__intro__indicator">
+            Stories
+            <span  class="home__intro__indicator__figure" ng-bind-html="cases|zerofill:3|wrapletters"></span>
+          </div>
+        </p>
+      </div>
+    </div>
+    <a class="home__go-to-explore" ui-sref="explore({view: 'companies'})">
+      <span class="home__go-to-explore__wrapper">
+        Let's<br />find<br />them
+      </span>
+    </a>
+  </div>
+</div>
