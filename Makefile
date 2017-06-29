@@ -12,6 +12,9 @@ install:
 deploy:
 	grunt --force deploy
 
+staging:
+	grunt --force staging
+
 publish:
 	git branch -D public || true
 	git checkout --orphan public
